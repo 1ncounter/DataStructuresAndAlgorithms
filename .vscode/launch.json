@@ -4,6 +4,13 @@
       "type": "java",
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
+      "mainClass": "stack.Main",
+      "projectName": "DataStructuresAndAlgorithms"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
       "mainClass": "queue.Main",
       "projectName": "DataStructuresAndAlgorithms"
     },

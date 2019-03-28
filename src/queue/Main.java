@@ -1,26 +1,25 @@
 package queue;
 
-public class Main {
-  public static void main(String[] args) throws Exception {
-    MyCircularQueue circularQueue = new MyCircularQueue(3); // 设置长度为 3
+import java.util.LinkedList;
+import java.util.Queue;
 
-    circularQueue.enQueue(1); // 返回 true
+// FIFO 先进先出的数据结构
 
-    circularQueue.enQueue(2); // 返回 true
+class Main {
+  public static void main(String[] args) {
+    Queue<Integer> queue = new LinkedList<Integer>();
 
-    circularQueue.enQueue(3); // 返回 true
-
-    circularQueue.enQueue(4); // 返回 false，队列已满
-
-    circularQueue.Rear(); // 返回 3
-
-    circularQueue.isFull(); // 返回 true
-
-    circularQueue.deQueue(); // 返回 true
-
-    circularQueue.enQueue(4); // 返回 true
-
-    circularQueue.Rear(); // 返回 4
-
+    System.out.println("The first element is: " + queue.peek());
+    // 3. Push new element.
+    queue.offer(5);
+    queue.offer(13);
+    queue.offer(8);
+    queue.offer(6);
+    // 4. Pop an element.
+    queue.poll();
+    // 5. Get the first element.
+    System.out.println("The first element is: " + queue.peek());
+    // 7. Get the size of the queue.
+    System.out.println("The size is: " + queue.size());
   }
 }
