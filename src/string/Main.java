@@ -2,8 +2,8 @@ package string;
 
 public class Main {
     public static void main(String[] args) {
-        String s = addBinary("11", "1");
-
+        char[] s = {'H', 'a', 'n', 'q', 'n', 's'};
+        reverseString(s);
         System.out.println(s);
     }
 
@@ -37,5 +37,44 @@ public class Main {
         }
 
         return binary.toString();
+    }
+
+    private static int strStr(String haystack, String needle) {
+        if (needle.isEmpty() || haystack.equals(needle)) return 0;
+        if (haystack.isEmpty() || haystack.length() < needle.length()) return -1;
+
+        for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+            if (needle.charAt(0) == haystack.charAt(i)) {
+                if (needle.equals(haystack.substring(i, i + needle.length()))) {
+                    return i;
+                }
+            }
+        }
+        return  -1;
+    }
+
+    public static String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+
+        String pre = strs[0];
+
+        for (int i = 1; i <= strs.length; i++) {
+            while (strs[i].indexOf(pre) != 0 && pre.length() > 0) {
+                pre = pre.substring(0, pre.length() - 1);
+            }
+        }
+        return pre;
+    }
+
+    public static void reverseString(char[] s) {
+        if (s.length == 0) return;
+        int left = 0;
+        int right = s.length - 1;
+
+        while (left < right) {
+            char t = s[left];
+            s[left++] = s[right];
+            s[right--] = t;
+        }
     }
 }
