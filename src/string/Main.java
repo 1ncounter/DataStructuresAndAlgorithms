@@ -1,5 +1,7 @@
 package string;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         char[] s = {'H', 'a', 'n', 'q', 'n', 's'};
@@ -76,5 +78,51 @@ public class Main {
             s[left++] = s[right];
             s[right--] = t;
         }
+    }
+
+    /**
+     * 给定长度为 2n 的数组, 你的任务是将这些数分成 n 对, 例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大。
+     */
+    public int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int sum = 0;
+
+        for(int i = 0;i < nums.length;i = i + 2){
+            sum = sum + nums[i];
+        }
+
+        return sum;
+    }
+
+    public static int[] twoSum(int[] nums, int target) {
+        int start = 0;
+        int end = 0;
+        int[] result = new int[2];
+
+        while (start < end) {
+            int temp = nums[start] + nums[end];
+
+            if (temp == target) {
+                result[0] = start;
+                result[1] = end;
+                return result;
+            } else if (temp < target) {
+                // 如果相加小于target 说明start处太小！因为end已经是最大的了
+                int t = nums[start];
+                start++;
+                while (t == nums[start]) {
+                    // 优化在于去除与start相等的值
+                    start++;
+                }
+            } else {
+                int t = nums[end];
+                end--;
+                while (t == nums[end]) {
+                    end--;
+                }
+            }
+        }
+
+        return result;
     }
 }
