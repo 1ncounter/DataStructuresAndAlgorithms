@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        char[] s = {'H', 'a', 'n', 'q', 'n', 's'};
-        reverseString(s);
-        System.out.println(s);
+        int s = 7;
+        int[] nums = {2,3,1,2,4,3};
+
+        System.out.println(minSubArrayLen(s, nums));
     }
 
     private static String addBinary(String a, String b) {
@@ -124,5 +125,78 @@ public class Main {
         }
 
         return result;
+    }
+
+    /**
+     * 双指针
+     * 给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+     *
+     * 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+     *
+     * 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+     */
+    public static int removeElement(int[] nums, int val) {
+        int k = 0;
+
+        for (int i = 0; i < nums.length; ++i) {
+            if (nums[i] != val) {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+
+        return k;
+    }
+
+    /**
+     * 给定一个二进制数组， 计算其中最大连续1的个数。
+     * @param nums 二进制数组
+     * @return 最大连续1的个数
+     */
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int k = 0;
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                k++;
+                if (k > max) {
+                    max = k;
+                }
+            } else {
+                k = 0;
+            }
+        }
+
+        return max;
+    }
+
+    /**
+     * 给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组。如果不存在符合条件的连续子数组，返回 0。
+     */
+    public static int minSubArrayLen(int s, int[] nums) {
+        int l = 0;
+        int r = 0;
+        int sum = 0;
+        int len = nums.length;
+        int minLength = len + 1;
+
+        while (l < len) {
+            if (r < len && sum < s) {
+                sum += nums[r];
+                r++;
+            } else {
+                sum -= nums[l];
+                l++;
+            }
+
+            if (sum >= s) {
+                minLength = Math.min(minLength, r - l);
+            }
+            System.out.println(minLength);
+        }
+
+        if (minLength == len + 1) return 0;
+
+        return minLength;
     }
 }
